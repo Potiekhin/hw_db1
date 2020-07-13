@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+add owner
+{% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        <h1 class="text-center text-white">Add Pet</h1>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Name"><br>
+        <input type="text" name="age" id="age" class="form-control" placeholder="Age"><br>
+        <input type="text" name="pet_type" id="pet_type" class="form-control" placeholder="Pet Type"><br>
+        <input type="submit" class="btn btn-success" value=" save" >
+    </form>
+{% endblock %}

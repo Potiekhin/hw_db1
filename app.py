@@ -21,6 +21,7 @@ class Owner(db.Model):
 
 class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    owner_id = db.Column(db.Integer(), nullable=False)
     name = db.Column(db.String(20), nullable=False)
     age = db.Column(db.Integer(), nullable=False)
     pet_type = db.Column(db.String(20), nullable=False)
@@ -39,12 +40,32 @@ def show_owners():
 @app.route('/owner/<int:id>', methods=['GET', 'POST'])
 def owner_page(id):
     owner = Owner.query.get(id)
-    return render_template('owner_page.html', owner=owner)
+    pet = Pet.query.filter_by(owner_id=id).all()
+    return render_template('owner_page.html', owner=owner, pet=pet)
 
 
 @app.route('/bonus')
 def bonus():
     return render_template('bonus.html')
+
+
+@app.route('/owner/<int:owner_id>/add_pet', methods=['GET', 'POST'])
+def add_pet(owner_id):
+    if request.method == 'POST':
+        name = request.form['name']
+        age = request.form['age']
+        pet_type = request.form['pet_type']
+
+        pet = Pet(name=name, age=age, pet_type=pet_type, owner_id=owner_id)
+
+        try:
+            db.session.add(pet)
+            db.session.commit()
+            return redirect('/')
+        except Exception as a:
+            return str(a)
+    else:
+        return render_template('add_pet.html')
 
 
 @app.route('/add_owner', methods=['GET', 'POST'])
