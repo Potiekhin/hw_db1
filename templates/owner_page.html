@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ owner.name }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center text-white">Owner {{ owner.name }}</h1>
+    <div class="d-flex justify-content-center">
+        <a href="#" class="btn btn-success">Add pet</a>
+    </div>
+    <br>
+    <div class="alert alert-info">
+        <h4>
+            Name: {{ owner.name }}.
+            Age: {{ owner.age }}.
+            City: {{ owner.city }}
+            Date: {{ owner.date.date() }}
+        </h4>
+    </div>
+{% endblock %}
