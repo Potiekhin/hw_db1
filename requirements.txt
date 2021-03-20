@@ -3,7 +3,7 @@ Flask==1.1.2
 flask-mysql-connector==1.0.3
 Flask-SQLAlchemy==2.4.3
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 mysql-connector-python==8.0.21
 numpy==1.19.0
